@@ -64,6 +64,7 @@ services:
     depends_on: *langfuse-depends-on
     environment:
       <<: *langfuse-env
+      HOSTNAME: 0.0.0.0
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:?NEXTAUTH_SECRET is required}
       LANGFUSE_INIT_ORG_ID: ${LANGFUSE_INIT_ORG_ID:-}
       LANGFUSE_INIT_ORG_NAME: ${LANGFUSE_INIT_ORG_NAME:-}
@@ -105,7 +106,7 @@ services:
       traefik.http.services.langfuse.loadbalancer.server.port: "3000"
       traefik.docker.network: "coolify"
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://$${HOSTNAME}:3000/api/public/health || exit 1"]
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:3000/api/public/health || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 10
