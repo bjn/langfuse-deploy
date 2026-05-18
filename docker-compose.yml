@@ -103,8 +103,9 @@ services:
       traefik.http.routers.langfuse-https.tls: "true"
       traefik.http.routers.langfuse-https.tls.certresolver: "letsencrypt"
       traefik.http.services.langfuse.loadbalancer.server.port: "3000"
+      traefik.docker.network: "coolify"
     healthcheck:
-      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000/api/public/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://$${HOSTNAME}:3000/api/public/health || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 10
