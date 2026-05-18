@@ -195,6 +195,8 @@ volumes:
 
 networks:
   langfuse-internal:
+    external: true
+    name: e12u44q5j4evcgwunfo0p4lj
   coolify:
     external: true
     name: coolify

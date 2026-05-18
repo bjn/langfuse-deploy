@@ -24,7 +24,7 @@ Current attached external networks:
 - Jeeves network: `g4cw8o8skg04o0kwo4wk0cso`
 - Hindsight memory network: `xtlb8ebit5pky5e5wlpotbbw`
 
-If a Coolify app is recreated and gets a new Docker network name, update `docker-compose.yml` and redeploy this stack.
+If this Langfuse Coolify app or a consumer app is recreated and gets a new Docker network name, update `docker-compose.yml` and redeploy this stack. The `langfuse-internal` network intentionally reuses the Coolify app network because this Docker host has exhausted default bridge address pools.
 
 ## Required Coolify env vars
 
